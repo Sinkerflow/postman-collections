@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "3daaf6e7-e429-483d-a37a-ac7992aced2b",
+		"name": "Album API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13491862"
+	},
+	"item": [
+		{
+			"name": "Retrieve albums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/albums",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find albums by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/albums/name/Sun",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"albums",
+						"name",
+						"Sun"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Album created\", function () {",
+							"  pm.response.to.have.status(201);",
+							"",
+							"  pm.environment.set(\"albumId\", data.id)",
+							"  pm.environment.set(\"albumName\", data.name)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sun-{{$randomWords}}\",\r\n    \"url\": null,\r\n    \"released\": \"1987-10-01T00:00:00Z\",\r\n    \"artists\": [\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/albums",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the album",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"265b9b3e-5035-43b4-ad01-92344feebf2f\",\r\n    \"url\": \"The_Darkside_of_the_Moon\",\r\n    \"name\": \"The Darkside of the Moon\",\r\n    \"description\": \"Description of this album.\",\r\n    \"type\": \"STUDIO\",\r\n    \"coverId\": \"4e6069ff-d742-4f43-80f1-cfbf053a6b35\",\r\n    \"released\": \"2020-01-01T00:00:00Z\",\r\n    \"artists\": [],\r\n    \"audit\": {\r\n        \"createdAt\": \"2022-05-04T10:13:10.437284Z\",\r\n        \"updatedAt\": \"2022-05-04T10:13:10.437284Z\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/albums",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the album by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/{{albumId}}",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"{{albumId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "2071b9f2-e17c-4542-9d68-38c624748195",
+		"name": "File API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13491862"
+	},
+	"item": [
+		{
+			"name": "Upload artist avatar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"File uploaded\", function () {",
+							"  pm.response.to.have.status(200);",
+							"",
+							"  pm.environment.set(\"fileId\", data.id)",
+							"  pm.environment.set(\"artistId\", data.objectId)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"type": "file",
+							"src": "/home/mamadaliev/Pictures/Avatars/avatar.png"
+						},
+						{
+							"key": "type",
+							"value": "ARTIST_AVATAR",
+							"type": "text"
+						},
+						{
+							"key": "objectId",
+							"value": "{{artistId}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/files",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload album covarage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/home/mamadaliev/Pictures/Avatars/avatar2.png"
+						},
+						{
+							"key": "type",
+							"value": "ALBUM_COVARAGE",
+							"type": "text"
+						},
+						{
+							"key": "parentId",
+							"value": "b3554aa9-11d9-43b9-9cd4-4ea240dcaa6a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/files",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload track image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"File uploaded\", function () {",
+							"  pm.response.to.have.status(200);",
+							"",
+							"  pm.environment.set(\"fileId\", data.id)",
+							"  pm.environment.set(\"artistId\", data.objectId)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"type": "file",
+							"src": "/home/mamadaliev/Pictures/Avatars/avatar2.png"
+						},
+						{
+							"key": "type",
+							"value": "ARTIST_AVATAR",
+							"type": "text"
+						},
+						{
+							"key": "objectId",
+							"value": "{{artistId}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/files",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload a track",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"File uploaded\", function () {",
+							"  pm.response.to.have.status(200);",
+							"",
+							"  pm.environment.set(\"fileId\", data.id)",
+							"  pm.environment.set(\"artistId\", data.objectId)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"type": "file",
+							"src": "/home/mamadaliev/Pictures/Avatars/avatar2.png"
+						},
+						{
+							"key": "type",
+							"value": "ARTIST_AVATAR",
+							"type": "text"
+						},
+						{
+							"key": "objectId",
+							"value": "{{artistId}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/files",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download a file by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/files/{{fileId}}/download",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"files",
+						"{{fileId}}",
+						"download"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

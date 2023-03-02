@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "c465ed66-5b2d-4bd6-9e74-7787e0d5b59f",
+		"name": "Track API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13491862"
+	},
+	"item": [
+		{
+			"name": "Retrieve tracks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/tracks",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a track by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/tracks/{{trackId}}",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"tracks",
+						"{{trackId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a track by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sinkerflow}}/v1/tracks/name/{{trackName}}",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"tracks",
+						"name",
+						"{{trackName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new track",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Track created\", function () {",
+							"  pm.response.to.have.status(201);",
+							"",
+							"  pm.environment.set(\"trackId\", data.id)",
+							"  pm.environment.set(\"trackName\", data.name)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"hello_world\",\r\n    \"name\": \"Hello, World!\",\r\n    \"artistId\": \"{{artistId}}\",\r\n    \"sources\": [\r\n        {\r\n            \"name\": \"320 kb/s\",\r\n            \"type\": \"MP3\",\r\n            \"link\": \"http://sinkerflow.com/downloads/534/320/124.mp3\"\r\n        },\r\n        {\r\n            \"name\": \"128 kb/s\",\r\n            \"type\": \"MP3\",\r\n            \"link\": \"http://sinkerflow.com/downloads/534/128/124.mp3\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/tracks",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a track by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{musicId}}\",\r\n    \"url\": \"desert_rose\",\r\n    \"name\": \"{{musicName}}\",\r\n    \"artistId\": \"4d8d795a-4a21-4502-9abd-aa8935e6b575\",\r\n    \"sources\": [\r\n        {\r\n            \"name\": \"320 kb/s\",\r\n            \"type\": \"MP3\",\r\n            \"link\": \"http://sinkerflow.com/downloads/534/320/124.mp3\"\r\n        },\r\n        {\r\n            \"name\": \"128 kb/s\",\r\n            \"type\": \"MP3\",\r\n            \"link\": \"http://sinkerflow.com/downloads/534/128/124.mp3\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/tracks",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a track by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sinkerflow}}/v1/tracks/{{trackId}}",
+					"host": [
+						"{{sinkerflow}}"
+					],
+					"path": [
+						"v1",
+						"tracks",
+						"{{trackId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
